@@ -33,7 +33,7 @@
 // include the following line in main sketch inside setup() function:
 //  analogReadResolution(ADC_BITS);
 // otherwise will default to 10 bits, as in regular Arduino-based boards.
-#if defined(__arm__)
+#if defined(__arm__) || defined(ESP32)
 #define ADC_BITS    12
 #else
 #define ADC_BITS    10

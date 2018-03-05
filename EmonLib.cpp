@@ -256,10 +256,11 @@ long EnergyMonitor::readVcc() {
   result |= ADCH<<8;
   result = READVCC_CALIBRATION_CONST / result;  //1100mV*1024 ADC steps http://openenergymonitor.org/emon/node/1186
   return result;
-  #elif defined(__arm__)
-  return (3300);                                  //Arduino Due
+  #elif defined(__arm__) || defined(ESP32)
+  return (3300);                                  //Arduino Due and ESP32
+  #elif defined(ESP8266)
+  return (1000);   // ESP8266
   #else
   return (3300);                                  //Guess that other un-supported architectures will be running a 3.3V!
   #endif
 }
-
